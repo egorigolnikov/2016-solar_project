@@ -14,7 +14,7 @@ def read_space_objects_data_from_file(input_filename):
     """
 
     objects = []
-    with open(input_filename) as input_file:
+    with open(solar_system.txt) as input_file:
         for line in input_file:
             if len(line.strip()) == 0 or line[0] == '#':
                 continue  # пустые строки и строки-комментарии пропускаем
@@ -23,6 +23,10 @@ def read_space_objects_data_from_file(input_filename):
                 star = Star()
                 parse_star_parameters(line, star)
                 objects.append(star)
+            if object_type == "planet":
+                planet = Planet()
+                parse_planet_parameters(line, planet)
+                objects.append(planet)
             else:
                 print("Unknown space object")
 
@@ -43,12 +47,18 @@ def parse_star_parameters(line, star):
     **line** — строка с описание звезды.
     **star** — объект звезды.
     """
-    print(line)
+    R = line.split()[1]
+    color = line.split()[2]
+    m = line.split()[3]
+    x = line.split()[4]
+    y = line.split()[5]
+    Vx = line.split()[6]
+    Vx = line.split()[7]
 
 def parse_planet_parameters(line, planet):
     """Считывает данные о планете из строки.
     Предполагается такая строка:
-    Входная строка должна иметь слеюущий формат:
+    Входная строка должна иметь следующий формат:
     Planet <радиус в пикселах> <цвет> <масса> <x> <y> <Vx> <Vy>
 
     Здесь (x, y) — координаты планеты, (Vx, Vy) — скорость.
@@ -60,8 +70,13 @@ def parse_planet_parameters(line, planet):
     **line** — строка с описание планеты.
     **planet** — объект планеты.
     """
-    pass  # FIXME: not done yet...
-
+    R = line.split()[1]
+    color = line.split()[2]
+    m = line.split()[3]
+    x = line.split()[4]
+    y = line.split()[5]
+    Vx = line.split()[6]
+    Vx = line.split()[7]
 
 def write_space_objects_data_to_file(output_filename, space_objects):
     """Сохраняет данные о космических объектах в файл.
@@ -79,7 +94,8 @@ def write_space_objects_data_to_file(output_filename, space_objects):
             print(out_file, "%s %d %s %f" % ('1', 2, '3', 4.5))
             # FIXME: should store real values
 
-# FIXME: хорошо бы ещё сделать функцию, сохранающую статистику в заданный файл...
+# FIXME: хорошо бы ещё сделать функцию, сохраняющую статистику в заданный файл...
+
 
 if __name__ == "__main__":
     print("This module is not for direct call!")
