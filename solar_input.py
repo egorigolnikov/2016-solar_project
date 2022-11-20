@@ -14,7 +14,7 @@ def read_space_objects_data_from_file(input_filename):
     """
 
     objects = []
-    with open(solar_system.txt) as input_file:
+    with open(input_filename, 'r') as input_file:
         for line in input_file:
             if len(line.strip()) == 0 or line[0] == '#':
                 continue  # пустые строки и строки-комментарии пропускаем
@@ -47,13 +47,13 @@ def parse_star_parameters(line, star):
     **line** — строка с описание звезды.
     **star** — объект звезды.
     """
-    R = line.split()[1]
-    color = line.split()[2]
-    m = line.split()[3]
-    x = line.split()[4]
-    y = line.split()[5]
-    Vx = line.split()[6]
-    Vx = line.split()[7]
+    star.R = float(line.split()[1])
+    star.color = line.split()[2]
+    star.m = float(line.split()[3])
+    star.x = float(line.split()[4])
+    star.y = float(line.split()[5])
+    star.Vx = float(line.split()[6])
+    star.Vx = float(line.split()[7])
 
 def parse_planet_parameters(line, planet):
     """Считывает данные о планете из строки.
@@ -70,13 +70,13 @@ def parse_planet_parameters(line, planet):
     **line** — строка с описание планеты.
     **planet** — объект планеты.
     """
-    R = line.split()[1]
-    color = line.split()[2]
-    m = line.split()[3]
-    x = line.split()[4]
-    y = line.split()[5]
-    Vx = line.split()[6]
-    Vx = line.split()[7]
+    planet.R = float(line.split()[1])
+    planet.color = line.split()[2]
+    planet.m = float(line.split()[3])
+    planet.x = float(line.split()[4])
+    planet.y = float(line.split()[5])
+    planet.Vx = float(line.split()[6])
+    planet.Vx = float(line.split()[7])
 
 def write_space_objects_data_to_file(output_filename, space_objects):
     """Сохраняет данные о космических объектах в файл.
