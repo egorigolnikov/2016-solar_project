@@ -1,5 +1,3 @@
-# coding: utf-8
-# license: GPLv3
 import tkinter
 from tkinter.filedialog import *
 from solar_vis import *
@@ -33,7 +31,8 @@ def execution():
     """
     global physical_time
     global displayed_time
-    recalculate_space_objects_positions(space_objects, time_step.get())
+    k = 10 ** 5  # мультипликатор скорости
+    recalculate_space_objects_positions(space_objects, time_step.get() * k)
     for body in space_objects:
         update_object_position(space, body)
     physical_time += time_step.get()
